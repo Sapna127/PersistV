@@ -13,11 +13,12 @@ const HomePage = () => {
   const [articlesPerPage] = useState(5);
   const [totalPages, setTotalPages] = useState(0);
   const [selectedCategory, setSelectedCategory] = useState('All');
+  const [searchTerm, setSearchTerm] = useState('');
 
   useEffect(() => {
     const getArticles = async () => {
       try {
-        const data = await fetchArticles();
+        const data = await fetchArticles(selectedCategory === 'All' ? '' : selectedCategory, 'us', 'en', searchTerm);
         setArticles(data);
         setFilteredArticles(data);
         setTotalPages(Math.ceil(data.length / articlesPerPage));
@@ -29,25 +30,7 @@ const HomePage = () => {
     };
 
     getArticles();
-  }, [articlesPerPage]);
-
-  useEffect(() => {
-    filterArticlesByCategory(selectedCategory);
-  }, [selectedCategory, articles]);
-
-  const filterArticlesByCategory = (category) => {
-    if (category === 'All') {
-      setFilteredArticles(articles);
-      setTotalPages(Math.ceil(articles.length / articlesPerPage));
-    } else {
-      const filtered = articles.filter(article =>
-        article.category === category
-      );
-      setFilteredArticles(filtered);
-      setTotalPages(Math.ceil(filtered.length / articlesPerPage));
-    }
-    setCurrentPage(1); // Reset to the first page
-  };
+  }, [selectedCategory, searchTerm, articlesPerPage]);
 
   const indexOfLastArticle = currentPage * articlesPerPage;
   const indexOfFirstArticle = indexOfLastArticle - articlesPerPage;
@@ -61,7 +44,11 @@ const HomePage = () => {
   return (
     <div className={styles.container}>
       <h1>News Articles</h1>
-      <Search selectedCategory={selectedCategory} onCategoryChange={setSelectedCategory} />
+      <Search
+        selectedCategory={selectedCategory}
+        onCategoryChange={setSelectedCategory}
+        onSearch={setSearchTerm}
+      />
       <div className={styles.articles}>
         {currentArticles.map((article) => (
           <div key={article.url} className={styles.articleCard}>

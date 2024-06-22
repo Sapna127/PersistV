@@ -3,11 +3,6 @@ import React from 'react';
 import Home from './pages/Home';
 
 const App = () => (
-  // <Router>
-  //   <Switch>
-  //     <Route exact path="/" component={Home} />
-  //   </Switch>
-  // </Router>
   <>
     <Home/>
   </>

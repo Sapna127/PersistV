@@ -1,15 +1,16 @@
 import axios from 'axios';
 
 const API_URL = 'https://newsapi.org/v2/top-headlines';
-const API_KEY = 'dd4d4e6f0f6244cea094b95aa7e593cb';
+const API_KEY = 'dd4d4e6f0f6244cea094b95aa7e593cb'
 
-export const fetchArticles = async (category = 'business', country = 'us', language = 'en') => {
+export const fetchArticles = async (category = 'business', country = 'us', language = 'en', searchTerm = '') => {
   try {
     const response = await axios.get(API_URL, {
       params: {
         category: category,
         country: country,
         language: language,
+        q: searchTerm, 
         apiKey: API_KEY
       }
     });

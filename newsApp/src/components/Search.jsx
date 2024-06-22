@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styles from './Search.module.css';
 
-const categories = ['business','entertainment','general','health','science','sports','technology'];
+const categories = ['business', 'entertainment', 'general', 'health', 'science', 'sports', 'technology'];
 
 const Search = ({ selectedCategory, onCategoryChange, onSearch }) => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -11,9 +11,13 @@ const Search = ({ selectedCategory, onCategoryChange, onSearch }) => {
     onSearch(e.target.value);
   };
 
+  const handleCategoryChange = (e) => {
+    onCategoryChange(e.target.value);
+  };
+
   return (
     <div className={styles.searchContainer}>
-    <input
+      <input
         type="text"
         value={searchTerm}
         onChange={handleSearch}
@@ -22,7 +26,7 @@ const Search = ({ selectedCategory, onCategoryChange, onSearch }) => {
       />
       <select
         value={selectedCategory}
-        onChange={(e) => onCategoryChange(e.target.value)}
+        onChange={handleCategoryChange}
         className={styles.dropdown}
       >
         {categories.map((category) => (
@@ -31,7 +35,6 @@ const Search = ({ selectedCategory, onCategoryChange, onSearch }) => {
           </option>
         ))}
       </select>
-      
     </div>
   );
 };
