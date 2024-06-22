@@ -1,0 +1,44 @@
+/* Home.module.css */
+.container {
+    padding: 20px;
+    background-color: #f9f9f9;
+  }
+  
+
+.articles{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+  .articleCard {
+    border: 1px solid #ddd;
+    margin-bottom: 20px;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    width: 150px;
+  }
+  
+  .articleImage {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+  }
+  
+  .articleTitle {
+    font-size: 1em;
+    margin-bottom: 10px;
+  }
+  
+  .articleDescription {
+    font-size: 0.75em;
+    color: #333;
+  }
+  
+  .readMore {
+    display: inline-block;
+    margin-top: 10px;
+    text-decoration: none;
+    color: #007bff;
+  }
+  
